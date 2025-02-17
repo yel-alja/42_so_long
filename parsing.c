@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:23:21 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/15 09:06:51 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/16 20:27:57 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ char	*read_map(char *str)
 	char	*map;
 
 	fd = open(str, O_RDONLY);
+	if(fd == -1)
+	{
+		write(2 , "Error: can't open file\n" ,23);
+		exit(1);
+	}
 	bytes_read = 1;
 	map = NULL;
 	while (bytes_read > 0)

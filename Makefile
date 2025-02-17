@@ -4,7 +4,7 @@ NAME = so_long
 
 # BONUS_SRCS =
 
-SRCS = main.c parsing.c solong_utils.c ft_split.c
+SRCS = main.c parsing.c solong_utils.c ft_split.c check_map.c
 
 OBJS:= $(SRCS:.c=.o)
 
