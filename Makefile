@@ -4,7 +4,8 @@ NAME = so_long
 
 # BONUS_SRCS =
 
-SRCS = main.c parsing.c solong_utils.c ft_split.c check_map.c
+SRCS = main.c parsing.c solong_utils.c ft_split.c check_map.c \
+		manage_mlx.c
 
 OBJS:= $(SRCS:.c=.o)
 
@@ -15,8 +16,9 @@ all:$(NAME)
 
 # bonus:$(BONUS_NAME)
 
-$(NAME):$(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(SRCS) -Lmlx_linux -lmlx_Linux -L /usr/include/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+
 BONUS_OBJS:= $(BONUS_SRCS:.c=.o)
 
 # $(BONUS_NAME):$(BONUS_OBJS)

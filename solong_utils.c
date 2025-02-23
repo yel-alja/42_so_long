@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:15 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/17 08:30:42 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/23 08:22:44 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,26 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	str[i + j] = '\0';
 	return (free(s1), str);
+}
+int	count_line(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+void ft_putnbr(int nb)
+{
+	if(nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		nb += '0';
+		write(1 , &nb , 1);
+	}
 }
