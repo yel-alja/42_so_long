@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:23:21 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 09:35:43 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/25 09:51:05 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_exit(char **map)
 {
@@ -101,7 +101,7 @@ void	check_map(char **map)
 		while (map[i][++j])
 		{
 			if (map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != 'P'
-				&& map[i][j] != '1' && map[i][j] != '0')
+				&& map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'B')
 				free_exit(map);
 			if (map[i][j] == 'E' || map[i][j] == 'P' || map[i][j] == 'C')
 			{

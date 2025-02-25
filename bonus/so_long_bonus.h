@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:26:09 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 10:45:13 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:32:41 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "/usr/include/minilibx-linux/mlx.h"
 # include <fcntl.h>
@@ -26,6 +26,8 @@
 # define PLAYER_D "textures/player_down.xpm"
 # define EXIT "textures/exit.xpm"
 # define COLLECT "textures/collect.xpm"
+# define BLINKY "textures/blinky.xpm"
+
 # define ESC 65307
 # define UP 65362
 # define LEFT 65361
@@ -51,6 +53,7 @@ typedef struct s_game
 	int			width;
 	t_position	p;
 	t_position	exit;
+	t_position	enemy;
 	void		*image_wall;
 	void		*image_bg;
 	void		*image_player_u;
@@ -59,6 +62,7 @@ typedef struct s_game
 	void		*image_player_r;
 	void		*image_exit;
 	void		*image_collect;
+	void		*image_blinky;
 	int			moves;
 }				t_game;
 
@@ -79,7 +83,7 @@ int				counter(char **map);
 void			ft_putnbr(int nb);
 void			init_game(t_game *game, char **map);
 void			free_game(t_game *game, int flag);
-void			check_win(t_game game);
+void			check_win(t_game game, int flag);
 int				mouse_handler(t_game *game);
 int				key_handler(int keyhook, t_game *game);
 void			move_player(t_game *game, int flag);
@@ -87,4 +91,5 @@ char			**cpy_arr(char **arr);
 void			flood_fill(char **tmp, int x, int y);
 void			is_valid(char **map, char **ori);
 int				mouse_handler(t_game *game);
+t_position		enemy_position(char **str);
 #endif

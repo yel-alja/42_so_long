@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:20:01 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/24 16:40:02 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:56:03 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 t_position	player_position(char **str)
 {
@@ -76,7 +76,7 @@ char	**cpy_arr(char **arr)
 
 void	flood_fill(char **tmp, int x, int y)
 {
-	if (tmp[x][y] == '1' || tmp[x][y] == 'V')
+	if (tmp[x][y] == '1' || tmp[x][y] == 'V' || tmp[x][y] == 'B')
 		return ;
 	tmp[x][y] = 'V';
 	flood_fill(tmp, x - 1, y);
@@ -97,7 +97,7 @@ void	is_valid(char **map, char **ori)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != 'V' && map[i][j] != '1' && map[i][j] != '0')
+			if (map[i][j] != 'V' && map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'B')
 			{
 				write(2, "Error: invalid map\n", 19);
 				free_s(map);

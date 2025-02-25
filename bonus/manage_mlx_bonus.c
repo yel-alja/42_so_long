@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_mlx.c                                       :+:      :+:    :+:   */
+/*   manage_mlx_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:47:29 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 11:22:03 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:33:14 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	full_window(char c, t_game game, t_position index, int flag)
 {
@@ -37,6 +37,9 @@ void	full_window(char c, t_game game, t_position index, int flag)
 			* 32, index.x * 32);
 	else if (c == 'C')
 		mlx_put_image_to_window(game.init, game.window, game.image_collect,
+			index.y * 32, index.x * 32);
+	else if (c == 'B')
+		mlx_put_image_to_window(game.init, game.window, game.image_blinky,
 			index.y * 32, index.x * 32);
 }
 
@@ -66,6 +69,7 @@ void	moves(t_game *game, int flag, char **map)
 {
 	if (flag == DOWN && map[game->p.x + 1][game->p.y] != '1')
 	{
+		check_win(*game, DOWN);
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x + 1][game->p.y] = 'P';
 		put_image_to_window(game->map, *game, DOWN);
@@ -74,6 +78,7 @@ void	moves(t_game *game, int flag, char **map)
 	}
 	if (flag == RIGHT && map[game->p.x][game->p.y + 1] != '1')
 	{
+		check_win(*game, RIGHT);
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x][game->p.y + 1] = 'P';
 		put_image_to_window(game->map, *game, RIGHT);
@@ -82,6 +87,7 @@ void	moves(t_game *game, int flag, char **map)
 	}
 	if (flag == LEFT && map[game->p.x][game->p.y - 1] != '1')
 	{
+		check_win(*game, LEFT);
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x][game->p.y - 1] = 'P';
 		put_image_to_window(game->map, *game, LEFT);
@@ -97,6 +103,7 @@ void	move_player(t_game *game, int flag)
 	map = game->map;
 	if (flag == UP && map[game->p.x - 1][game->p.y] != '1')
 	{
+		check_win(*game, UP);
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x - 1][game->p.y] = 'P';
 		put_image_to_window(game->map, *game, UP);
