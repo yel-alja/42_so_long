@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:26:09 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/27 11:25:06 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:48:55 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_BONUS_H
 
 # include "/usr/include/minilibx-linux/mlx.h"
-# include "stdio.h" ///
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>

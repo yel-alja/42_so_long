@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 21:22:30 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/27 18:50:45 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:47:25 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ int	mouse_handler(t_game *game)
 
 void	full_window2(t_game game, char c, t_position index)
 {
-	char		*str;
 	static int	id;
-	static int count;
-	int total_enemy;
+	static int	count;
+	int			total_enemy;
 
-	total_enemy = counter(game.map , 'B');
+	total_enemy = counter(game.map, 'B');
 	if (c == 'B')
 	{
 		id += (count % total_enemy);
@@ -95,10 +94,6 @@ void	full_window2(t_game game, char c, t_position index)
 		if (count % (50 * total_enemy) == 0)
 			id++;
 		id -= (count % total_enemy);
-
 		count++;
 	}
-	str = ft_itoa(game.moves);
-	mlx_string_put(game.init, game.window, 11, 19, 0X53C8F1, str);
-	free(str);
 }

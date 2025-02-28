@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:47:29 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/28 15:18:44 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:47:07 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	put_image_to_window(char **map, t_game game, int flag)
 	int			i;
 	int			j;
 	t_position	index;
+	char		*str;
 
 	i = 0;
 	j = 0;
@@ -57,6 +58,9 @@ void	put_image_to_window(char **map, t_game game, int flag)
 			index.x = i;
 			index.y = j;
 			full_window(map[i][j], game, index, flag);
+			str = ft_itoa(game.moves);
+			mlx_string_put(game.init, game.window, 11, 19, 0X53C8F1, str);
+			free(str);
 			j++;
 		}
 		i++;
@@ -122,7 +126,7 @@ void	mlx_manager(char **map)
 	init_game(&game, map);
 	put_image_to_window(map, game, LEFT);
 	mlx_hook(game.window, 17, 0, mouse_handler, &game);
-	mlx_hook(game.window, 2, 1, key_handler, &game);
+	mlx_key_hook(game.window, key_handler, &game);
 	mlx_loop_hook(game.init, move_enemy, &game);
 	mlx_loop(game.init);
 }
