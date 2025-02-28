@@ -97,7 +97,8 @@ void	is_valid(char **map, char **ori)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != 'V' && map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'B')
+			if (map[i][j] != 'V' && map[i][j] != '1' && map[i][j] != '0'
+				&& map[i][j] != 'B')
 			{
 				write(2, "Error: invalid map\n", 19);
 				free_s(map);

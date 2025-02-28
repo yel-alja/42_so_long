@@ -4,7 +4,7 @@ BONUS_NAME = so_long_bonus
 
 BONUS_SRCS = bonus/main_bonus.c bonus/parsing_bonus.c bonus/solong_utils_bonus.c bonus/ft_split_bonus.c \
 			bonus/check_map_bonus.c bonus/manage_mlx_bonus.c bonus/position_bonus.c \
-			bonus/manage_mlx2_bonus.c
+			bonus/manage_mlx2_bonus.c bonus/itoa.c bonus/manage_mlx3_bonus.c
 
 SRCS = main.c parsing.c solong_utils.c ft_split.c check_map.c \
 		manage_mlx.c position.c manage_mlx2.c
@@ -24,7 +24,7 @@ $(NAME): $(OBJS)
 
 BONUS_OBJS:= $(BONUS_SRCS:.c=.o)
 
-$(BONUS_NAME):$(BONUS_OBJS)
+$(BONUS_NAME):$(BONUS_OBJS) bonus/so_long_bonus.h
 	$(CC) $(CFLAGS) $(BONUS_SRCS) -Lmlx_linux -lmlx_Linux -L /usr/include/minilibx-linux -Imlx_linux -lXext -lX11  -lz -o $(BONUS_NAME)
 
 clean :

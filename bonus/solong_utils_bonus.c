@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:15 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 10:18:46 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:35:33 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_putnbr(int nb)
 	}
 }
 
-int	counter(char **map)
+int	counter(char **map, char c)
 {
 	int	i;
 	int	j;
@@ -91,7 +91,7 @@ int	counter(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'C')
+			if (map[i][j] == c)
 				counter++;
 			j++;
 		}

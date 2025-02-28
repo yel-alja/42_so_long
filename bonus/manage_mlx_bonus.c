@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:47:29 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 11:33:14 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:18:44 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	full_window(char c, t_game game, t_position index, int flag)
 	else if (c == 'C')
 		mlx_put_image_to_window(game.init, game.window, game.image_collect,
 			index.y * 32, index.x * 32);
-	else if (c == 'B')
-		mlx_put_image_to_window(game.init, game.window, game.image_blinky,
-			index.y * 32, index.x * 32);
+	full_window2(game, c, index);
 }
 
 void	put_image_to_window(char **map, t_game game, int flag)
@@ -73,8 +71,7 @@ void	moves(t_game *game, int flag, char **map)
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x + 1][game->p.y] = 'P';
 		put_image_to_window(game->map, *game, DOWN);
-		ft_putnbr(game->moves++);
-		write(1, "\n", 1);
+		game->moves++;
 	}
 	if (flag == RIGHT && map[game->p.x][game->p.y + 1] != '1')
 	{
@@ -82,8 +79,7 @@ void	moves(t_game *game, int flag, char **map)
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x][game->p.y + 1] = 'P';
 		put_image_to_window(game->map, *game, RIGHT);
-		ft_putnbr(game->moves++);
-		write(1, "\n", 1);
+		game->moves++;
 	}
 	if (flag == LEFT && map[game->p.x][game->p.y - 1] != '1')
 	{
@@ -91,8 +87,7 @@ void	moves(t_game *game, int flag, char **map)
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x][game->p.y - 1] = 'P';
 		put_image_to_window(game->map, *game, LEFT);
-		ft_putnbr(game->moves++);
-		write(1, "\n", 1);
+		game->moves++;
 	}
 }
 
@@ -107,8 +102,7 @@ void	move_player(t_game *game, int flag)
 		map[game->p.x][game->p.y] = '0';
 		map[game->p.x - 1][game->p.y] = 'P';
 		put_image_to_window(game->map, *game, UP);
-		ft_putnbr(game->moves++);
-		write(1, "\n", 1);
+		game->moves++;
 	}
 	else if (flag == DOWN || flag == RIGHT || flag == LEFT)
 		moves(game, flag, map);
@@ -128,6 +122,7 @@ void	mlx_manager(char **map)
 	init_game(&game, map);
 	put_image_to_window(map, game, LEFT);
 	mlx_hook(game.window, 17, 0, mouse_handler, &game);
-	mlx_key_hook(game.window, key_handler, &game);
+	mlx_hook(game.window, 2, 1, key_handler, &game);
+	mlx_loop_hook(game.init, move_enemy, &game);
 	mlx_loop(game.init);
 }

@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:23:12 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 11:03:30 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:59:48 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ void	validate_map(char **map)
 	flood_fill(tmp, player.x, player.y);
 	is_valid(tmp, map);
 	free_s(tmp);
+}
+
+int	move_enemy(t_game *game)
+{
+	usleep(1500);
+	put_image_to_window(game->map, *game, 0);
+	return (0);
 }
 
 int	main(int ac, char **av)

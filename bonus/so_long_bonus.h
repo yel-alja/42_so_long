@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:26:09 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 11:32:41 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:25:06 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_BONUS_H
 
 # include "/usr/include/minilibx-linux/mlx.h"
+# include "stdio.h" ///
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -26,7 +27,12 @@
 # define PLAYER_D "textures/player_down.xpm"
 # define EXIT "textures/exit.xpm"
 # define COLLECT "textures/collect.xpm"
-# define BLINKY "textures/blinky.xpm"
+# define ENEMY0 "textures/enemy0.xpm"
+# define ENEMY1 "textures/enemy1.xpm"
+# define ENEMY2 "textures/enemy2.xpm"
+# define ENEMY3 "textures/enemy3.xpm"
+# define ENEMY4 "textures/enemy4.xpm"
+# define ENEMY5 "textures/enemy5.xpm"
 
 # define ESC 65307
 # define UP 65362
@@ -62,7 +68,12 @@ typedef struct s_game
 	void		*image_player_r;
 	void		*image_exit;
 	void		*image_collect;
-	void		*image_blinky;
+	void		*image_enemy0;
+	void		*image_enemy1;
+	void		*image_enemy2;
+	void		*image_enemy3;
+	void		*image_enemy4;
+	void		*image_enemy5;
 	int			moves;
 }				t_game;
 
@@ -79,7 +90,7 @@ void			validate_map(char **map);
 int				count_line(char **arr);
 t_position		exit_position(char **str);
 void			mlx_manager(char **map);
-int				counter(char **map);
+int				counter(char **map, char c);
 void			ft_putnbr(int nb);
 void			init_game(t_game *game, char **map);
 void			free_game(t_game *game, int flag);
@@ -92,4 +103,10 @@ void			flood_fill(char **tmp, int x, int y);
 void			is_valid(char **map, char **ori);
 int				mouse_handler(t_game *game);
 t_position		enemy_position(char **str);
+char			*ft_itoa(int n);
+void			full_window2(t_game game, char c, t_position index);
+int				key_handler(int keyhook, t_game *game);
+int				move_enemy(t_game *game);
+void			put_image_to_window(char **map, t_game game, int flag);
+
 #endif

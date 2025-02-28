@@ -6,11 +6,18 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 09:01:33 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/25 11:38:26 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:07:35 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	init_game3(t_game *game, int x, int y)
+{
+	game->image_enemy3 = mlx_xpm_file_to_image(game->init, ENEMY3, &x, &y);
+	if (!game->image_enemy3)
+		free_game(game, 1);
+}
 
 void	init_game2(t_game *game, int x, int y)
 {
@@ -29,9 +36,16 @@ void	init_game2(t_game *game, int x, int y)
 	game->image_collect = mlx_xpm_file_to_image(game->init, COLLECT, &x, &y);
 	if (!game->image_collect)
 		free_game(game, 1);
-	game->image_blinky = mlx_xpm_file_to_image(game->init, BLINKY, &x, &y);
-	if(!game->image_blinky)
-		exit(1);
+	game->image_enemy0 = mlx_xpm_file_to_image(game->init, ENEMY0, &x, &y);
+	if (!game->image_enemy0)
+		free_game(game, 1);
+	game->image_enemy1 = mlx_xpm_file_to_image(game->init, ENEMY1, &x, &y);
+	if (!game->image_enemy1)
+		free_game(game, 1);
+	game->image_enemy2 = mlx_xpm_file_to_image(game->init, ENEMY2, &x, &y);
+	if (!game->image_enemy2)
+		free_game(game, 1);
+	init_game3(game, x, y);
 }
 
 void	init_game(t_game *game, char **map)
@@ -63,6 +77,28 @@ void	init_game(t_game *game, char **map)
 	game->moves = 1;
 }
 
+void	free_game2(t_game *game, int flag)
+{
+	if (game->image_enemy0)
+		mlx_destroy_image(game->init, game->image_enemy0);
+	if (game->image_enemy1)
+		mlx_destroy_image(game->init, game->image_enemy1);
+	if (game->image_enemy2)
+		mlx_destroy_image(game->init, game->image_enemy2);
+	if (game->image_enemy3)
+		mlx_destroy_image(game->init, game->image_enemy3);
+	if (game->image_enemy4)
+		mlx_destroy_image(game->init, game->image_enemy4);
+	if (game->image_enemy5)
+		mlx_destroy_image(game->init, game->image_enemy5);
+	if (game->init)
+		mlx_destroy_display(game->init);
+	if (game->init)
+		free(game->init);
+	free_s(game->map);
+	exit(flag);
+}
+
 void	free_game(t_game *game, int flag)
 {
 	if (game->image_bg)
@@ -79,54 +115,9 @@ void	free_game(t_game *game, int flag)
 		mlx_destroy_image(game->init, game->image_player_u);
 	if (game->image_player_l)
 		mlx_destroy_image(game->init, game->image_player_l);
-	if(game->image_blinky)
-		mlx_destroy_image(game->init, game->image_blinky);
 	if (game->image_player_r)
 		mlx_destroy_image(game->init, game->image_player_r);
 	if (game->window)
 		mlx_destroy_window(game->init, game->window);
-	if (game->init)
-		mlx_destroy_display(game->init);
-	if (game->init)
-		free(game->init);
-	(free_s(game->map), exit(flag));
-}
-
-void	check_win(t_game game ,int flag)
-{
-	char **map;
-
-	map = game.map;
-	if (counter(game.map) == 0
-		&& game.map[game.p.x][game.p.y] == game.map[game.exit.x][game.exit.y])
-	{
-		write(1, "Congratulation you won!\n", 24);
-		free_game(&game, 0);
-	}
-	if (flag == LEFT && map[game.p.x][game.p.y - 1] == 'B')
-		(write(1 , "game over\n" ,10), free_game(&game , 0));
-	if (flag == RIGHT && map[game.p.x][game.p.y + 1] == 'B')
-		(write(1 , "game over\n" ,10), free_game(&game , 0));
-	if (flag == UP && map[game.p.x - 1][game.p.y] == 'B')
-		(write(1 , "game over\n" ,10),free_game(&game , 0));
-	if (flag == DOWN && map[game.p.x + 1][game.p.y] == 'B')
-		(write(1 , "game over\n" ,10),free_game(&game , 0));
-
-}
-
-int	key_handler(int keyhook, t_game *game)
-{
-
-	if (keyhook == UP || keyhook == W)
-		move_player(game, UP);
-	if (keyhook == RIGHT || keyhook == D)
-		move_player(game, RIGHT);
-	if (keyhook == LEFT || keyhook == A)
-		move_player(game, LEFT);
-	if (keyhook == DOWN || keyhook == S)
-		move_player(game, DOWN);
-	if (keyhook == ESC)
-		free_game(game, 0);
-	check_win(*game , -1);
-	return (0);
+	free_game2(game, flag);
 }
