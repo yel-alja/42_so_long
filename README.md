@@ -14,6 +14,4 @@
 ## Getting Started
 
 ### Prerequisites
-- **MinilibX** graphics library.
-- **Make**: Build automation tool.
-- **GCC** (or any C-compatible compiler).
+- **CC** (or any C-compatible compiler).
