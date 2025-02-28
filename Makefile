@@ -6,8 +6,8 @@ BONUS_SRCS = bonus/main_bonus.c bonus/parsing_bonus.c bonus/solong_utils_bonus.c
 			bonus/check_map_bonus.c bonus/manage_mlx_bonus.c bonus/position_bonus.c \
 			bonus/manage_mlx2_bonus.c bonus/itoa.c bonus/manage_mlx3_bonus.c
 
-SRCS = main.c parsing.c solong_utils.c ft_split.c check_map.c \
-		manage_mlx.c position.c manage_mlx2.c
+SRCS = src/main.c src/parsing.c src/solong_utils.c src/ft_split.c src/check_map.c \
+		src/manage_mlx.c src/position.c src/manage_mlx2.c
 
 OBJS:=$(SRCS:.c=.o)
 BONUS_OBJS:=$(BONUS_SRCS:.c=.o)
