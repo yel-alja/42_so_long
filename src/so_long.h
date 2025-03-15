@@ -6,14 +6,14 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:26:09 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/28 19:57:13 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:10:34 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx-linux/mlx.h"
+# include "/usr/include/minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -68,7 +68,7 @@ char			**ft_split(const char *s, char c);
 char			*ft_strjoin(char *s1, char *s2);
 size_t			ft_strlen(const char *str);
 void			check_map(char **map);
-int				check_array(char **str);
+void			check_walls(char **str);
 char			*read_map(char *str);
 t_position		player_position(char **str);
 void			validate_map(char **map);

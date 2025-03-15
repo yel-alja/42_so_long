@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:23:12 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/27 08:11:12 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:50:32 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ void	validate_map(char **map)
 	free_s(tmp);
 }
 
+void	check_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[0] == '\n' || (str[i] == '\n' && str[i + 1] == '\n'))
+		{
+			free(str);
+			write(2, "Error:\ninvalid map\n", 19);
+			exit(1);
+		}
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	char	*map;
@@ -35,9 +52,12 @@ int	main(int ac, char **av)
 		exit(1);
 	}
 	map = read_map(av[1]);
+	check_str(map);
 	res = ft_split(map, '\n');
 	free(map);
-	check_array(res);
+	if (!res)
+		return (1);
+	check_walls(res);
 	check_map(res);
 	validate_map(res);
 	mlx_manager(res);

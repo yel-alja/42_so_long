@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:23:21 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/26 16:49:49 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:11:53 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_exit(char **map)
 {
 	free_s(map);
-	write(2, "Error: invalid map\n", 19);
+	write(2, "Error:\ninvalid map\n", 19);
 	exit(1);
 }
 
@@ -24,10 +24,10 @@ void	check_ber(char *str)
 	int	i;
 
 	i = ft_strlen(str);
-	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b' || str[i
-			- 4] != '.')
+	if (i <= 4 || str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
+		|| str[i - 4] != '.' || str[i - 5] == '/')
 	{
-		write(2, "Error: map's file must be <.ber>\n", 33);
+		write(2, "Error:\nmap's file must be <.ber>\n", 33);
 		exit(1);
 	}
 }
@@ -43,7 +43,7 @@ char	*read_map(char *str)
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 	{
-		write(2, "Error: can't open file\n", 23);
+		write(2, "Error:\ncan't open file\n", 23);
 		exit(1);
 	}
 	bytes_read = 1;
@@ -54,13 +54,13 @@ char	*read_map(char *str)
 		buffer[bytes_read] = '\0';
 		map = ft_strjoin(map, buffer);
 		if (!map)
-			(free(map), exit(1));
+			exit(1);
 	}
 	close(fd);
 	return (map);
 }
 
-int	check_array(char **str)
+void	check_walls(char **str)
 {
 	int		i;
 	int		j;
@@ -85,7 +85,6 @@ int	check_array(char **str)
 			free_exit(str);
 		i++;
 	}
-	return (1);
 }
 
 void	check_map(char **map)

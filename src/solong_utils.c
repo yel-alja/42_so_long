@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:15 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/23 21:21:21 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:27:33 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len_s2 = ft_strlen(s2);
 	str = malloc(len_s1 + len_s2 + 1);
 	if (!str)
-		exit(1);
+		return (free(s1), NULL);
 	i = 0;
 	while (len_s1 && s1[i])
 	{

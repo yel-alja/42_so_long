@@ -15,8 +15,7 @@ BONUS_OBJS:=$(BONUS_SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_PATH = minilibx-linux
-MLX_FLAGS = -L$(MLX_PATH) -I$(MLX_PATH) -lmlx -lXext -lX11 -lz
+MLX_FLAGS = -Lminilibx-linux -Iminilibx-linux -lmlx -lXext -lX11 -lz
 
 all: $(NAME)
 

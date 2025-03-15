@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 09:01:33 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/27 09:20:58 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:02:11 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_game2(t_game *game, int x, int y)
 	game->image_collect = mlx_xpm_file_to_image(game->init, COLLECT, &x, &y);
 	if (!game->image_collect)
 		free_game(game, 1);
+	game->moves = 1;
 }
 
 void	init_game(t_game *game, char **map)
@@ -40,6 +41,8 @@ void	init_game(t_game *game, char **map)
 	game->height = count_line(map);
 	game->width = ft_strlen(map[1]);
 	game->init = mlx_init();
+	if (!game->init)
+		free_game(game, 1);
 	game->window = mlx_new_window(game->init, game->width * 32, game->height
 			* 32, "so_long");
 	if (!game->window)
@@ -56,7 +59,6 @@ void	init_game(t_game *game, char **map)
 	init_game2(game, x, y);
 	game->p = player_position(map);
 	game->exit = exit_position(map);
-	game->moves = 1;
 }
 
 void	free_game(t_game *game, int flag)

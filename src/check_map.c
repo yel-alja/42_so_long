@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:20:01 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/02/24 16:40:02 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:50:22 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,6 @@ t_position	player_position(char **str)
 	return (player);
 }
 
-void	free_fail(char **arr, char **map)
-{
-	if (map)
-		free_s(map);
-	if (arr)
-		free_s(arr);
-	exit(1);
-}
-
 char	**cpy_arr(char **arr)
 {
 	char	**map;
@@ -54,14 +45,14 @@ char	**cpy_arr(char **arr)
 
 	map = malloc((count_line(arr) + 1) * sizeof(char *));
 	if (!map)
-		free_fail(arr, NULL);
+		(free_s(arr), exit(1));
 	i = 0;
 	while (arr[i])
 	{
 		j = 0;
 		map[i] = malloc(ft_strlen(arr[i]) + 1);
 		if (!map)
-			free_fail(arr, map);
+			(free_s(arr), free_s(map), exit(1));
 		while (arr[i][j])
 		{
 			map[i][j] = arr[i][j];
@@ -99,7 +90,7 @@ void	is_valid(char **map, char **ori)
 		{
 			if (map[i][j] != 'V' && map[i][j] != '1' && map[i][j] != '0')
 			{
-				write(2, "Error: invalid map\n", 19);
+				write(2, "Error:\ninvalid map\n", 19);
 				free_s(map);
 				free_s(ori);
 				exit(1);
