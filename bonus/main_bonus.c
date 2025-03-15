@@ -26,7 +26,6 @@ void	validate_map(char **map)
 
 int	move_enemy(t_game *game)
 {
-	usleep(1500);
 	put_image_to_window(game->map, *game, 0);
 	return (0);
 }
