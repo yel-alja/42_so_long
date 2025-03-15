@@ -6,14 +6,14 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:26:09 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/03/15 13:22:17 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:41:55 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include "minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
