@@ -6,7 +6,7 @@
 /*   By: yel-alja <yel-alja@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:47:29 by yel-alja          #+#    #+#             */
-/*   Updated: 2025/03/08 17:31:33 by yel-alja         ###   ########.fr       */
+/*   Updated: 2025/03/16 13:53:24 by yel-alja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,6 @@ void	mlx_manager(char **map)
 	init_game(&game, map);
 	put_image_to_window(map, game, LEFT);
 	mlx_hook(game.window, 17, 0, mouse_handler, &game);
-	mlx_key_hook(game.window, key_handler, &game);
+	mlx_hook(game.window, 2, 1, key_handler, &game);
 	mlx_loop(game.init);
 }
