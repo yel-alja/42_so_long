@@ -14,23 +14,21 @@ BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = minilibx-linux
-MLX_FLAGS = -L$(MLX_DIR) -I$(MLX_DIR) -lmlx -lXext -lX11 -lz
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
 
 all: $(NAME)
 
 bonus: $(BONUS_NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(MLX_DIR)
 	$(CC) $(OBJS) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
 
 $(BONUS_NAME): $(BONUS_OBJS)
-	@$(MAKE) -C $(MLX_DIR)
 	$(CC) $(BONUS_OBJS) $(CFLAGS) $(MLX_FLAGS) -o $(BONUS_NAME)
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
-	@$(MAKE) -C $(MLX_DIR) clean
+	
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
